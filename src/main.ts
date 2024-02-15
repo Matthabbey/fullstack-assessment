@@ -14,7 +14,6 @@ async function bootstrap() {
     forceCloseConnections: true,
   });
   app.enableShutdownHooks();
-  // app.enableCors();
   app.enableCors({
     origin: [
       'http://localhost:8000',
