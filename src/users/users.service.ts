@@ -33,7 +33,6 @@ export class UsersService {
         id,
         otp_expiry,
         password_reset_expire,
-        // date_of_birth,
         password,
         new_password_token,
         otp,
