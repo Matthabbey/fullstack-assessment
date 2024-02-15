@@ -8,7 +8,7 @@ import * as fs from 'fs';
 import { AllExceptionsFilter } from './middlewares/allException.filter';
 
 async function bootstrap() {
-  dotenv.config(); // Load environment variables from .env file
+  dotenv.config();
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'log', 'verbose', 'debug'],
     forceCloseConnections: true,
