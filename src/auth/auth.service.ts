@@ -89,7 +89,7 @@ export class AuthService {
       const user = new User();
       user.email = signupInstance.email;
       user.password = userPassword;
-      user.sport_interested = signupInstance.sport_interested;
+      user.sport_interested = [];
       user.otp = _otp;
       user.gender = Gender.Other;
       user.otp_expiry = expiry;

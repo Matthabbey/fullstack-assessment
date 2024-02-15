@@ -1,4 +1,4 @@
-import { SportInterestEnum } from 'src/auth/dtos';
+import { SportInterestArray } from 'src/auth/dtos';
 import {
   BeforeInsert,
   Column,
@@ -34,8 +34,11 @@ export class User {
   @Column({ length: 255, unique: true, nullable: true })
   email: string;
 
-  @Column({ length: 255, nullable: false })
-  sport_interested: SportInterestEnum;
+  @Column({
+    type: 'json',
+    nullable: false,
+  })
+  sport_interested: SportInterestArray[];
 
   @Column({ length: 255, nullable: false })
   password: string;

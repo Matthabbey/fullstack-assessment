@@ -1,15 +1,18 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
+  ArrayNotEmpty,
+  IsArray,
   IsEmail,
   IsEnum,
   IsOptional,
   IsPhoneNumber,
   IsString,
   IsStrongPassword,
+  isArray,
   isPhoneNumber,
 } from 'class-validator';
-export enum SportInterestEnum {
+export enum SportInterestArray {
   Football = 'Football',
   Shooting = 'Shooting',
   Skiing = 'Skiing',
@@ -35,13 +38,15 @@ export class SignupDTO {
   @IsPhoneNumber()
   readonly phone_number: number;
 
-  @ApiProperty({ enum: SportInterestEnum, example: SportInterestEnum.Football })
-  @IsEnum(SportInterestEnum)
-  readonly sport_interested: SportInterestEnum;
+  @ApiProperty({ isArray: true, enum: SportInterestArray, example: [SportInterestArray.Football] })
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsEnum(SportInterestArray, { each: true })
+  readonly sport_interested: SportInterestArray[];
 }
 
 export class LoginDTO {
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'user unique email',
     example: 'vamp@gmail.com',
   })
@@ -49,6 +54,10 @@ export class LoginDTO {
   @IsOptional()
   @Transform(({ value }) => value.toLowerCase()) // Convert to lowercase
   readonly email: string;
+
+  @ApiPropertyOptional({ example: '09876543211' })
+  @IsPhoneNumber()
+  readonly phone_number: number;
 
   @ApiProperty({ example: 'Vamp@123' })
   @IsString()

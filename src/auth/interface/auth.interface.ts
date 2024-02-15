@@ -1,4 +1,4 @@
-import { SportInterestEnum } from '../dtos';
+import { SportInterestArray } from '../dtos';
 
 export interface AuthPayload {
   id: string;
@@ -28,7 +28,7 @@ export interface IEmail {
 export interface ISignupInstance {
   email?: string;
   password: string;
-  sport_interested: SportInterestEnum;
+  sport_interested: SportInterestArray[];
 }
 
 export interface IUserInstance {
